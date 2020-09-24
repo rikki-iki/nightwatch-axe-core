@@ -1,0 +1,26 @@
+{
+  "name": "nightwatch-axe-core",
+  "version": "1.0.1",
+  "description": "Nightwatch.js commands for running aXe-core.",
+  "keywords": [
+    "nightwatch",
+    "accessibility",
+    "axe"
+  ],
+  "author": "Rikki Bochow",
+  "license": "MIT",
+  "files": [
+    "commands"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rikki-iki/nightwatch-axe-core"
+  },
+  "bugs": {
+    "url": "https://github.com/rikki-iki/nightwatch-axe-core/issues"
+  },
+  "homepage": "https://github.com/rikki-iki/nightwatch-axe-core",
+  "dependencies": {
+    "axe-core": "^4.0.1"
+  }
+}
