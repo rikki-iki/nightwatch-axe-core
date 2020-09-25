@@ -16,7 +16,7 @@ const CONFIG_FILENAME = 'axe.conf.js';
  * @param {object} opt - Axe options.
  * @param {function} done - Done callback.
  */
-const runAxe = (cxt, opt, done) => {
+const runAxe = function (cxt, opt, done) {
   if (!window.axe) {
     done({ error: 'window.axe not found. Try increasing the "options.timeout" in your axe.conf file.' });
   }
@@ -56,7 +56,7 @@ module.exports.command = function (customContext, customOptions) {
   this.perform(() => {
     // Set Nightwatch async script timeout option,
     // because axe-core can need more time.
-    this.timeoutsAsyncScript(opt.timeout || 1000);
+    this.timeoutsAsyncScript(opt.timeout);
 
     // Make sure axe-core script is included.
     // See /tests/nightwatch/commands/includeAxe.js
@@ -71,8 +71,8 @@ module.exports.command = function (customContext, customOptions) {
         if (response.errorStatus === 28) {
           throw new Error('Try increasing the "options.timeout" in your axe.conf.js file.');
         }
-        else if (response.error) {
-          throw new Error(response.error);
+        else if (response.value.error) {
+          throw new Error(response.value.error);
         }
 
         const { passes, violations } = results;

@@ -26,7 +26,7 @@ module.exports.command = function (callback) {
     throw new Error(`Unable to open file: ${filePath}`);
   }
 
-  this.execute((src) => {
+  this.execute(function (src) {
     // ensure to inject only once!
     const axeCore = document.querySelector('#axe-core');
     if (src && !axeCore) {
