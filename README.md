@@ -33,7 +33,9 @@ These can be defined globally and/or per call to the `axe()` command.
 
 __In addition to the standard aXe `options`:__
 
-- `options.verbose` set to `true` will log all successful `aXe` tests.
+- `options.verbose` set to `true` will log all successful `aXe` tests in additional to the unsuccessful ones.
+- `options.relatedNodes` set to `true` will log other html that relates to the rule violation. This can be helpful to enable 
+when debugging.
 - `options.timeout` configures Nightwatch's `timeoutsAsyncScript()` amount, default value is `1000 milliseconds`.
 
 aXe can require a fair amount of time to run, so increasing the `timeout` option is often required.

@@ -124,6 +124,16 @@ module.exports.command = function (customContext, customOptions) {
             if (opt.elementRef) {
               console.log(`  Element reference: ${chalk.yellow(node.element.ELEMENT)}`);
             }
+            if (opt.relatedNodes) {
+              console.log('--\nRelated nodes:');
+              const all = node.any.concat(node.all, node.none);
+              all.forEach((eachNode) => {
+                console.log(eachNode.message);
+                eachNode.relatedNodes.forEach((relatedNode) => {
+                  console.log(`Selector: ${chalk.cyan(relatedNode.target)}`);
+                })
+              })
+            }
           });
           console.log('');
         });
