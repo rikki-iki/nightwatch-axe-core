@@ -38,7 +38,7 @@ const runAxe = function (cxt, opt, done) {
  * @param {object} customOptions - Axe options. Defaults to axe.conf options.
  * @return {command} - Return this to make sure commands can be chained.
  */
-module.exports.command = function (customContext, customOptions) {
+module.exports.command = function (customContext, customOptions = {}) {
   let defaultConfig = {
     options: {
       timeout: 1000,
@@ -51,7 +51,7 @@ module.exports.command = function (customContext, customOptions) {
 
   const { context, options } = defaultConfig;
   const ctx = customContext || context;
-  const opt = customOptions || options;
+  const opt = Object.assign(options, customOptions);
 
   this.perform(() => {
     // Set Nightwatch async script timeout option,
@@ -91,7 +91,7 @@ module.exports.command = function (customContext, customOptions) {
           this.assert.ok(true, `Axe: ${passCount} passed.`);
         }
 
-        if (violations) {
+        if (failCount > 0) {
           console.log(chalk.red(`-----${failCount} aXe violations-----`));
         }
 
@@ -138,11 +138,8 @@ module.exports.command = function (customContext, customOptions) {
           console.log('');
         });
 
-        if (violations) {
-          console.log(chalk.red('--------------------------'));
-        }
-
         if (failCount > 0) {
+          console.log(chalk.red('--------------------------'));
           // Show violation count and fail.
           this.assert.fail(`Axe: ${failCount} rule violation(s). See aXe violations output for details`);
         }

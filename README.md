@@ -92,8 +92,9 @@ export default {
 
 ### Per test configuration
 
-When calling `axe()` you can can pass in the `context` and `options` values as arguments to override any global 
-configuration. 
+When calling `axe()` you can can pass in the `context` and `options` values as arguments. `context` will __override__
+any globally defined contexts, whilst `options` will be __merged with__ any globally defined options. This way you can
+have edge case tests that inherit global config but can easily be change one or two things.
 
 ```js
 axe(context, options)
@@ -119,8 +120,6 @@ export default {
           'color-contrast': { enabled: true },
           'valid-lang': { enabled: false }
         },
-        verbose: false,
-        timeout: 5000,
       })
       .end()
   }
