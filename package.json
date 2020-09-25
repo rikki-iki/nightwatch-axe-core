@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/rikki-iki/nightwatch-axe-core",
   "dependencies": {
-    "axe-core": "^4.0.1"
+    "axe-core": "^4.0.2",
+    "chalk": "^4.1.0"
   }
 }

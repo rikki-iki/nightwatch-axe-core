@@ -3,6 +3,7 @@
  * @file Custom axe-core runner.
  */
 
+const chalk = require('chalk');
 const path = require('path');
 const fs = require('fs');
 const CONFIG_FILENAME = 'axe.conf.js';
@@ -90,6 +91,10 @@ module.exports.command = function (customContext, customOptions) {
           this.assert.ok(true, `Axe: ${passCount} passed.`);
         }
 
+        if (violations) {
+          console.log(chalk.red(`-----${failCount} aXe violations-----`));
+        }
+
         violations.forEach((violation, i) => {
           i += 1;
           // If violations, list each one with as much information as possible.
@@ -99,18 +104,37 @@ module.exports.command = function (customContext, customOptions) {
           const url = helpUrl.split('?')[0];
 
           // Console log for better formatting.
-          console.log(`-----aXe-----\n#${i} - ${help} (${id})\nImpact: ${impact}\nCount: ${nodes.length}\nSee: ${url}`);
+          console.log(chalk.red.bold(`#${i}: ${help}`) + chalk.red(` (${id})`));
+          console.log(`Impact: ${chalk.cyan(impact)}`);
+          console.log(`Count: ${chalk.cyan(nodes.length)}`);
+          console.log(`See: ${chalk.cyan(url)}`);
+
+          // Each violation can effect multiple nodes.
           nodes.forEach((node, ii) => {
             ii += 1;
             const { failureSummary, html } = node;
-            console.log(`#${i}.${ii} - ${failureSummary}\n  ${html}`);
+            console.log(chalk.red.bold(`#${i}.${ii}`) + `: ${failureSummary}`);
+            console.log(chalk.green(`  ${html}`));
+            if (opt.selectors) {
+              console.log(`  Selector: ${chalk.cyan(node.target)}`);
+            }
+            if (opt.ancestry) {
+              console.log(`  Ancestry: ${chalk.cyan(node.ancestry)}`);
+            }
+            if (opt.elementRef) {
+              console.log(`  Element reference: ${chalk.yellow(node.element.ELEMENT)}`);
+            }
           });
-          console.log('-------------');
+          console.log('');
         });
+
+        if (violations) {
+          console.log(chalk.red('--------------------------'));
+        }
 
         if (failCount > 0) {
           // Show violation count and fail.
-          this.assert.fail(`Axe: ${failCount} rule violation(s). See console output for details`);
+          this.assert.fail(`Axe: ${failCount} rule violation(s). See aXe violations output for details`);
         }
       });
     });
