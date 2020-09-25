@@ -126,3 +126,25 @@ export default {
   }
 }
 ```
+
+### Debugging
+
+When debugging a failure it can be useful to enable all of the output options, and set a large timeout;
+
+```js
+options: {
+  timeout: 60000,
+  verbose: true,
+  selectors: true,
+  absolutePaths: true,
+  ancestry: true,
+  elementRef: true,
+  relatedNodes: true,
+}
+```
+
+This will give you as much information as possible into what caused the failure.
+
+Another helpful option is setting `resultTypes: ['violations']`, as described in the 
+[axe-core docs](https://github.com/dequelabs/axe-core/blob/83056ada0e50dc943a5e2829c97323a744cb3b28/doc/API.md#section-4-performance)
+which can improve performance and reduce timeout failures.
