@@ -5,7 +5,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const CONFIG_FILENAME = 'axe.con.js';
+const CONFIG_FILENAME = 'axe.conf.js';
 
 /**
  * Check and run Axe.
@@ -61,7 +61,7 @@ module.exports.command = function (customContext, customOptions) {
     // See /tests/nightwatch/commands/includeAxe.js
     this.includeAxe((axe) => {
       if (!axe) {
-        throw new Error('The includeAxe() command failed to append the axe-core script to the fixture. See /tests/nightwatch/commands/includeAxe.js');
+        throw new Error('The includeAxe() command failed to append the axe-core script to the fixture. Please make sure the axe-core node module is installed.');
       }
 
       // Execute runeAxe() asynchronously.

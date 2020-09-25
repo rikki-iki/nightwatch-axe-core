@@ -29,7 +29,7 @@ Parameter Name | Parameter Type   | Description
 context        | string or object | css selector or [include/exclude object](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#context-parameter)
 options        | object           | set of [axe options](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#options-parameter)
 
-These can be defined globally and/or per call to the custom `axe()` command.
+These can be defined globally and/or per call to the `axe()` command.
 
 __In addition to the standard aXe `options`:__
 
@@ -41,7 +41,7 @@ aXe can require a fair amount of time to run, so increasing the `timeout` option
 __Injecting aXe-core__
 
 The `axe()` command will inject `./node_modules/axe-core/axe-core.min.js` into your test fixture, just once, by running 
-the included `injextAxe()` command and checking for it at the start of the `axe()` command.
+the `includeAxe()` command and checking for it at the start of the `axe()` command.
 
 If it fails to inject or find the script it will throw an error. If it fails please check the `axe-core` package has 
 been installed.
@@ -116,7 +116,9 @@ export default {
         rules: {
           'color-contrast': { enabled: true },
           'valid-lang': { enabled: false }
-        }
+        },
+        verbose: false,
+        timeout: 5000,
       })
       .end()
   }
