@@ -28,7 +28,7 @@ module.exports = {
 
     // Set Nightwatch async script timeout option,
     // because axe-core can need more time.
-    this.timeoutsAsyncScript(opt.timeout);
+    this.timeoutsAsyncScript(options.timeout);
     // Make sure axe-core script is included.
     this.axeInject()
     // Call axe run with our custom config.
