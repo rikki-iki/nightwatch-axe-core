@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/rikki-iki/nightwatch-axe-core"
+    "url": "git+https://github.com/rikki-iki/nightwatch-axe-core.git"
   },
   "bugs": {
     "url": "https://github.com/rikki-iki/nightwatch-axe-core/issues"
