@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-axe-core",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Nightwatch.js commands for running aXe-core.",
   "keywords": [
     "nightwatch",
@@ -20,8 +20,7 @@
     "url": "https://github.com/rikki-iki/nightwatch-axe-core/issues"
   },
   "homepage": "https://github.com/rikki-iki/nightwatch-axe-core",
-  "dependencies": {
-    "axe-core": "^4.0.2",
-    "chalk": "^4.1.0"
+  "peerDependencies": {
+    "nightwatch": ">=2.3.6"
   }
 }

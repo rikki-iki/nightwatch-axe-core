@@ -33,20 +33,14 @@ These can be defined globally and/or per call to the `axe()` command.
 
 __In addition to the standard aXe `options`:__
 
-- `options.verbose` set to `true` will log all successful `aXe` tests in additional to the unsuccessful ones.
-- `options.relatedNodes` set to `true` will log other html that relates to the rule violation. This can be helpful to enable 
-when debugging.
 - `options.timeout` configures Nightwatch's `timeoutsAsyncScript()` amount, default value is `1000 milliseconds`.
 
 aXe can require a fair amount of time to run, so increasing the `timeout` option is often required.
 
 __Injecting aXe-core__
 
-The `axe()` command will inject `./node_modules/axe-core/axe-core.min.js` into your test fixture, just once, by running 
-the `includeAxe()` command and checking for it at the start of the `axe()` command.
+Since Nightwatch 2.3.6, axe is included by default, but still requires calling both `axeInject()` and `axeRun()`. This command handles both.
 
-If it fails to inject or find the script it will throw an error. If it fails please check the `axe-core` package has 
-been installed.
 
 ### Global configuration file
 
@@ -66,7 +60,6 @@ module.exports = {
       type: 'tag',
       values: ['wcag2a', 'wcag2aa'],
     },
-    verbose: true,
     timeout: 2000,
   }
 };
@@ -138,7 +131,6 @@ options: {
   absolutePaths: true,
   ancestry: true,
   elementRef: true,
-  relatedNodes: true,
 }
 ```
 
